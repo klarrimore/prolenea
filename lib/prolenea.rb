@@ -2,6 +2,7 @@ require 'faraday'
 require 'active_support'
 require 'prolenea/version'
 require 'prolenea/connection'
+require 'prolenea/middleware/prolenea_response_middleware'
 
 module Prolenea
 
@@ -19,4 +20,5 @@ module Prolenea
 
   extend ClassMethods
 
+  Faraday::Response.register_middleware :prolenea_response => lambda { ProleneaResponseMiddleware }
 end

@@ -18,7 +18,9 @@ module Prolenea
         c.request :multipart
         c.request :url_encoded
         c.request :instrumentation
-        
+
+        c.response :prolenea_response
+
         c.adapter Faraday.default_adapter
       end
     end

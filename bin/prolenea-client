@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+
+require File.expand_path('../../lib/prolenea', __FILE__)
+
+include Prolenea
+
+runner = Dante::Runner.new('prolenea-client')
+
+runner.description = 'Prolenea Client'
+
+runner.with_options do |opts|
+  opts.on("-u", "--uri URI", String, "Prolenea URI") do |uri|
+    options[:uri] = uri
+  end
+
+  opts.on("-n", "--number Number", String, "Number to lookup") do |number|
+    options[:number] = number
+  end
+end
+
+# Parse command-line options and execute the process
+runner.execute do |opts|
+  config = {}
+
+  config[:uri] = opts[:uri]
+  number = options[:number]
+
+  Prolenea.connect config
+
+  result = Prolenea.lookup_number number
+
+  puts result
+end

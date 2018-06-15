@@ -26,4 +26,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_runtime_dependency 'activesupport', '>= 4.0.0'
   spec.add_runtime_dependency 'faraday', '~> 0.15.2'
+  spec.add_runtime_dependency 'dante', '~> 0.2.0'
 end

@@ -16,6 +16,12 @@ module Prolenea
       @connection = Connection.new(:uri => config[:uri])
     end
 
+    def lookup_number(number)
+      params = {:dial => number}
+
+      self.connection.get '/', params
+    end
+
   end
 
   extend ClassMethods

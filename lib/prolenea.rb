@@ -1,5 +1,5 @@
-require 'dante'
 require 'faraday'
+require 'json'
 require 'active_support'
 require 'prolenea/version'
 require 'prolenea/connection'
@@ -20,7 +20,9 @@ module Prolenea
     def lookup_number(number)
       params = {:dial => number}
 
-      self.connection.get '/', params
+      response = self.connection.get '/', params
+
+      response.env[:parsed_body]
     end
 
   end

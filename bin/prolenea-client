@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
-
-require File.expand_path('../../lib/prolenea', __FILE__)
+require 'dante'
+require 'pry'
+require 'prolenea'
 
 include Prolenea
 
@@ -31,5 +32,5 @@ runner.execute do |opts|
 
   result = Prolenea.lookup_number number
 
-  puts result
+  puts result.to_json
 end

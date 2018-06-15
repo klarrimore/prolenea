@@ -1,3 +1,4 @@
+require 'dante'
 require 'faraday'
 require 'active_support'
 require 'prolenea/version'

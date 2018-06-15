@@ -1,6 +1,5 @@
 require 'faraday'
 require 'json'
-require 'active_support'
 require 'prolenea/version'
 require 'prolenea/connection'
 require 'prolenea/middleware/prolenea_response_middleware'

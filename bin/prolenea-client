@@ -1,17 +1,15 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
-require 'dante'
+require 'optparse'
 require 'pry'
 require 'prolenea'
 
 include Prolenea
 
-runner = Dante::Runner.new('prolenea-client')
+options, config = {}, {}
 
-runner.description = 'Prolenea Client'
-
-runner.with_options do |opts|
+OptionParser.new do |opts|
   opts.on("-u", "--uri URI", String, "Prolenea URI") do |uri|
     options[:uri] = uri
   end
@@ -19,18 +17,13 @@ runner.with_options do |opts|
   opts.on("-n", "--number Number", String, "Number to lookup") do |number|
     options[:number] = number
   end
-end
+end.parse!
 
-# Parse command-line options and execute the process
-runner.execute do |opts|
-  config = {}
+config[:uri] = options[:uri]
+number = options[:number]
 
-  config[:uri] = opts[:uri]
-  number = opts[:number]
+Prolenea.connect config
 
-  Prolenea.connect config
+result = Prolenea.lookup_number number
 
-  result = Prolenea.lookup_number number
-
-  puts result.to_json
-end
+puts JSON.pretty_generate result

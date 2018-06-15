@@ -16,8 +16,7 @@ module Prolenea
         c.headers['User-Agent'] = USER_AGENT
 
         c.request :multipart
-        c.request :url_encoded
-        c.request :instrumentation
+        c.request :url_encoded        
 
         c.response :prolenea_response
 

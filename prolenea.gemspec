@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Keith Larrimore']
   spec.email         = ['keithlarrimore@gmail.com']
 
-  spec.summary       = %q{}
-  spec.description   = %q{}
-  spec.homepage      = 'TODO: stuff'
+  spec.summary       = %q{IceHook System's Basic Ruby Client for Prolenea's LNP Query Service.}
+  spec.description   = %q{Executes queries to Prolenea's LNP API and parses the results and returns a cleaner JSON response.}
+  spec.homepage      = 'https://prolenea.com/'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bundler', '~> 1.14'
   spec.add_development_dependency 'rake', '~> 10.0'
-  spec.add_development_dependency 'rspec', '~> 3.0'  
+  spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_runtime_dependency 'faraday', '~> 0.15.2'
   spec.add_runtime_dependency 'pry', '~> 0.11.3'
 end

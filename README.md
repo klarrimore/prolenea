@@ -1,28 +1,34 @@
 # Prolenea
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/prolenea`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
 ## Installation
 
-Add this line to your application's Gemfile:
+```bash
+gem install prolenea
+```
 
 ```ruby
 gem 'prolenea'
 ```
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install prolenea
-
 ## Usage
 
-TODO: Write usage instructions here
+```bash
+bin/prolenea-client -u http://prolenea.example.com -n 12125551000
+```
+
+```ruby
+require 'prolenea'
+
+options = {}
+options[:uri] = 'http://prolenea.example.com'
+options[:number] = '12125551000'
+
+Prolenea.connect options
+
+result = Prolenea.lookup_number number
+
+puts JSON.pretty_generate result
+```
 
 ## Development
 
@@ -32,10 +38,9 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/prolenea.
+Bug reports and pull requests are welcome on GitHub at https://github.com/klarrimore/prolenea.
 
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-

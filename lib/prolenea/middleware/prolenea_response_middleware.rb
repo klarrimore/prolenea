@@ -30,6 +30,10 @@ module Prolenea
       number_info = {}
       rows = body.split("\r\n")
 
+      if rows.length != RESPONSE_ROW_NAMES.length
+        raise StandardError, "unable to parse HTTP response body"
+      end
+
       rows.each_with_index do |row, i|
         number_info[RESPONSE_ROW_NAMES[i]] = (row == '-' ? nil : row)
       end

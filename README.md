@@ -21,7 +21,7 @@ require 'prolenea'
 
 options = {}
 options[:uri] = 'http://prolenea.example.com'
-options[:number] = '12125551000'
+number = '12125551000'
 
 Prolenea.connect options
 

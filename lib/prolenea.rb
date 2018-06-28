@@ -24,8 +24,8 @@ module Prolenea
       response = self.connection.get '/', params
 
       response.env[:parsed_body]
-    rescue ProleneaRequestError => pre
-      raise ProleneaLookupError.new({:parent_error => pre}), pre.message
+    rescue ProleneaError => pe
+      raise ProleneaLookupError.new({:parent_error => pe}), pe.message
     rescue StandardError => se
       raise ProleneaLookupError.new({:parent_error => se}), se.message
     end

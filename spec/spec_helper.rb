@@ -1,5 +1,8 @@
 require 'bundler/setup'
 require 'prolenea'
+require 'webmock/rspec'
+
+include Prolenea
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

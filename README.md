@@ -35,8 +35,8 @@ puts JSON.pretty_generate result
 ```javascript
 {
   "number": "2125551000",
-  "local_routing_number": null,
-  "ported_date": null,
+  "local_routing_number": "6465550000",
+  "ported_date": "2015-07-09T15:00:00-05:00",
   "alternative_spid": null,
   "alternative_spid_name": null,
   "line_type": null,

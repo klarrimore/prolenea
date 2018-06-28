@@ -16,6 +16,11 @@ RSpec.describe Prolenea do
     expect(Prolenea::VERSION).not_to be nil
   end
 
+  it 'has to be connected' do
+    Prolenea.instance_variable_set :@connection, nil
+    expect { Prolenea.connection }.to raise_error(ProleneaNoConnectionError)
+  end
+
   it 'throws a ProleneaLookupError if the body is malformed' do
     expect { Prolenea.lookup_number('12125551000') }.to raise_error(ProleneaLookupError)
   end

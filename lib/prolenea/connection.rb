@@ -51,6 +51,9 @@ module Prolenea
         request.body = params unless params.empty?
       end
 
+      request.options[:timeout] = (options[:timeout] ? options[:timeout] : Prolenea.default_timeout)
+      request.options[:open_timeout] = (options[:open_timeout] ? options[:open_timeout] : Prolenea.default_timeout)
+
       request
     end
 

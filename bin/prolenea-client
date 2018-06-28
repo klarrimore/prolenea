@@ -17,6 +17,10 @@ OptionParser.new do |opts|
   opts.on("-n", "--number Number", String, "Number to lookup") do |number|
     options[:number] = number
   end
+
+  opts.on("-c", "--console") do
+    options[:console] = true
+  end
 end.parse!
 
 begin
@@ -25,9 +29,12 @@ begin
 
   Prolenea.connect config
 
-  result = Prolenea.lookup_number number
-
-  puts JSON.pretty_generate result
+  if options[:console]
+    pry.binding
+  elsif number
+    result = Prolenea.lookup_number(number)
+    puts JSON.pretty_generate result
+  end
 rescue ProleneaError => pe
   STDERR.puts pe.message
   STDERR.puts pe.backtrace.join("\n")

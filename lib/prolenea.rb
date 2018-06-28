@@ -9,13 +9,18 @@ require 'prolenea/middleware/prolenea_response_middleware'
 module Prolenea
   include Error
 
+  DEFAULT_TIMEOUT = 2
+
   module ClassMethods
 
+    attr_accessor :default_timeout
+
     def connection
-      @connection ? @connection : (raise ProleneaNoConnectionError)
+      @connection ? @connection : (raise ProleneaNoConnectionError.new({}), 'Connection is not setup')
     end
 
     def connect(config = {})
+      @default_timeout = config[:default_timeout] || DEFAULT_TIMEOUT
       @connection = Connection.new(:uri => config[:uri])
     end
 
@@ -23,10 +28,10 @@ module Prolenea
       !@connection.nil?
     end
 
-    def lookup_number(number)
+    def lookup_number(number, options = {})
       params = {:dial => number}
 
-      response = self.connection.get '/', params
+      response = self.connection.get '/', params, options
 
       response.env[:parsed_body]
     rescue ProleneaError => pe

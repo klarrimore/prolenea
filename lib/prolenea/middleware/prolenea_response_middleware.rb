@@ -1,6 +1,10 @@
 module Prolenea
   class ProleneaResponseMiddleware < Faraday::Response::Middleware
 
+    PORTED_DATE_TIMEZONE = '-0500'
+
+    PORTED_DATE_FORMAT = '%Y%m%d%H'
+
     RESPONSE_ROW_NAMES = %w(
       number
       local_routing_number
@@ -38,7 +42,23 @@ module Prolenea
         number_info[RESPONSE_ROW_NAMES[i]] = (row == '-' ? nil : row)
       end
 
+      self.parse_number_info number_info
+    end
+
+    def parse_number_info(number_info)
+      if number_info['ported_date']
+        parsed_ported_date = self.parse_ported_date number_info['ported_date']
+
+        number_info['ported_date'] = parsed_ported_date.iso8601
+      end
+
       number_info
+    end
+
+    def parse_ported_date(s)
+      if !s.nil? && !s.empty?
+        DateTime.parse "#{s} #{PORTED_DATE_TIMEZONE}", "#{PORTED_DATE_FORMAT} %z"
+      end
     end
 
   end

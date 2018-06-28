@@ -1,5 +1,6 @@
 require 'faraday'
 require 'json'
+require 'date'
 require 'prolenea/version'
 require 'prolenea/errors'
 require 'prolenea/connection'

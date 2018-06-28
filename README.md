@@ -6,15 +6,15 @@
 gem install prolenea
 ```
 
-```ruby
-gem 'prolenea'
-```
-
 ## Usage
 
+### CLI Usage
+
 ```bash
-bin/prolenea-client -u http://prolenea.example.com -n 12125551000
+prolenea-client -u http://prolenea.example.com -n 12125551000
 ```
+
+### Ruby Usage
 
 ```ruby
 require 'prolenea'

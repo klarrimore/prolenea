@@ -30,6 +30,24 @@ result = Prolenea.lookup_number number
 puts JSON.pretty_generate result
 ```
 
+### Output
+
+```javascript
+{
+  "number": "2125551000",
+  "local_routing_number": null,
+  "ported_date": null,
+  "alternative_spid": null,
+  "alternative_spid_name": null,
+  "line_type": null,
+  "operating_company_number": "MULT",
+  "operating_company_name": "MULTIPLE OCN LISTING",
+  "lata": "99999",
+  "city": "CUSTOMER DIRECTORY ASSISTANCE",
+  "state": "NY"
+}
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

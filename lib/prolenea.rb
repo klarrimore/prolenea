@@ -11,11 +11,15 @@ module Prolenea
   module ClassMethods
 
     def connection
-      @connection ? @connection : (raise StandardError)
+      @connection ? @connection : (raise ProleneaNoConnectionError)
     end
 
     def connect(config = {})
       @connection = Connection.new(:uri => config[:uri])
+    end
+
+    def connected?
+      !@connection.nil?
     end
 
     def lookup_number(number)

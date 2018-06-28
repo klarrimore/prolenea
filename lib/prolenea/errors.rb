@@ -14,5 +14,8 @@ module Prolenea
 
     class ProleneaLookupError < ProleneaError #:nodoc:
     end
+
+    class ProleneaNoConnectionError < ProleneaError #:nodoc:
+    end
   end
 end

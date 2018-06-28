@@ -16,7 +16,7 @@ module Prolenea
         c.headers['User-Agent'] = USER_AGENT
 
         c.request :multipart
-        c.request :url_encoded        
+        c.request :url_encoded
 
         c.response :prolenea_response
 
@@ -38,6 +38,8 @@ module Prolenea
       }
 
       response
+    rescue Faraday::Error => fe
+      raise ProleneaRequestError.new({:parent_error => fe}), fe.message
     end
 
     def config_request(request, method, path, params, options)

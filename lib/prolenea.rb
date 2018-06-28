@@ -1,10 +1,12 @@
 require 'faraday'
 require 'json'
 require 'prolenea/version'
+require 'prolenea/errors'
 require 'prolenea/connection'
 require 'prolenea/middleware/prolenea_response_middleware'
 
 module Prolenea
+  include Error
 
   module ClassMethods
 
@@ -22,6 +24,10 @@ module Prolenea
       response = self.connection.get '/', params
 
       response.env[:parsed_body]
+    rescue ProleneaRequestError => pre
+      raise ProleneaLookupError.new({:parent_error => pre}), pre.message
+    rescue StandardError => se
+      raise ProleneaLookupError.new({:parent_error => se}), se.message
     end
 
   end

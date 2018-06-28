@@ -19,11 +19,16 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-config[:uri] = options[:uri]
-number = options[:number]
+begin
+  config[:uri] = options[:uri]
+  number = options[:number]
 
-Prolenea.connect config
+  Prolenea.connect config
 
-result = Prolenea.lookup_number number
+  result = Prolenea.lookup_number number
 
-puts JSON.pretty_generate result
+  puts JSON.pretty_generate result
+rescue ProleneaError => pe
+  STDERR.puts pe.message
+  STDERR.puts pe.backtrace.join("\n")
+end

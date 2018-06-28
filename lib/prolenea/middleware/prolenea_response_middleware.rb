@@ -20,7 +20,7 @@ module Prolenea
       when 200
         env[:parsed_body] = self.parse_body env[:body]
       else
-        raise StandardError, "recieved an unexpected HTTP response code #{env[:status]}"
+        raise ProleneaRequestError.new({}), "Recieved an unexpected HTTP response code #{env[:status]}"
       end
 
       env
@@ -31,7 +31,7 @@ module Prolenea
       rows = body.split("\r\n")
 
       if rows.length != RESPONSE_ROW_NAMES.length
-        raise StandardError, "unable to parse HTTP response body"
+        raise ProleneaRequestError.new({}), "Unable to parse HTTP response body"
       end
 
       rows.each_with_index do |row, i|

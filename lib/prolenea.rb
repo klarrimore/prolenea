@@ -9,7 +9,7 @@ require 'prolenea/middleware/prolenea_response_middleware'
 module Prolenea
   include Error
 
-  DEFAULT_TIMEOUT = 2
+  DEFAULT_TIMEOUT = 10
 
   module ClassMethods
 
